@@ -1,18 +1,12 @@
 package org.example;
 
-import bean.User;
+import dao.inter.EmploymentHistoryDaoInter;
 import dao.inter.UserDaoInter;
+import dao.inter.UserSkillDaoInter;
+
 public class Main {
     public static void main(String[] args)throws Exception {
-        UserDaoInter userDao= Context.instanceUserDao();
-//        List<User>list = userDao.getAll();
-//        userDao.removeUser(2);
-//        List<User>list2 = userDao.getAll();
-//        System.out.println("list="+list);
-//        System.out.println("list2="+list2);
-
-        User u = userDao.getById(5);
-        u.setId(2);
-        userDao.updateUser(u);
+        EmploymentHistoryDaoInter dao= Context.instanceEmploymentHistoryDao();
+        System.out.println(dao.getAllEmploymentHistoryByUserId(4));
     }
 }
