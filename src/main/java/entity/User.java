@@ -2,9 +2,6 @@ package entity;
 
 import java.sql.Date;
 import java.util.List;
-
-import static javax.management.remote.JMXConnectorFactory.connect;
-
 public class User {
     private int id;
     private String name;

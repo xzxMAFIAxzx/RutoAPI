@@ -1,5 +1,6 @@
 package dao.inter;
 
+import entity.User;
 import entity.UserSkill;
 
 import java.sql.Connection;
@@ -14,5 +15,4 @@ public abstract class AbstractDAO {
         Connection c = DriverManager.getConnection(url, username, password);
         return c;
     }
-
 }
