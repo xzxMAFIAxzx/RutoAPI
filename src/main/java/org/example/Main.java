@@ -6,7 +6,7 @@ import dao.inter.UserSkillDaoInter;
 
 public class Main {
     public static void main(String[] args)throws Exception {
-        UserSkillDaoInter dao= Context.instanceUserSkillDao();
-        System.out.println(dao.getAllSkillByUserId(4));
+        UserDaoInter dao= Context.instanceUserDao();
+        System.out.println(dao.getById(1));
     }
 }

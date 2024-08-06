@@ -2,12 +2,14 @@ package entity;
 
 import java.sql.Date;
 import java.util.List;
+
 public class User {
     private int id;
     private String name;
     private String surname;
     private String phone;
     private String email;
+    private String profileDesc;
     private Date brithDate;
     private Country country;
     private Country birthPlace;
@@ -20,7 +22,7 @@ public class User {
         this.id = id;
     }
 
-    public User(int id, String name, String surname, String phone, String email, Date brithDate, Country country, Country birthPlace) {
+    public User(int id, String name, String surname, String phone, String email, String profileDesc, Date brithDate, Country country, Country birthPlace) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -29,6 +31,7 @@ public class User {
         this.brithDate = brithDate;
         this.country = country;
         this.birthPlace = birthPlace;
+        this.profileDesc = profileDesc;
     }
 
     public Country getCountry() {
@@ -111,6 +114,14 @@ public class User {
         this.birthPlace = birthPlace;
     }
 
+    public String getProfileDesc() {
+        return profileDesc;
+    }
+
+    public void setProfileDesc(String profileDesc) {
+        this.profileDesc = profileDesc;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -119,9 +130,11 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", profileDesc='" + profileDesc + '\'' +
                 ", brithDate=" + brithDate +
-                ", nationality=" + country +
+                ", country=" + country +
                 ", birthPlace=" + birthPlace +
+                ", skills=" + skills +
                 '}';
     }
 }

@@ -21,6 +21,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         String surname = rs.getString("surname");
         String phone = rs.getString("phone");
         String email = rs.getString("email");
+        String profileDesc = rs.getString("profile_description");
         int nationalityId = rs.getInt("nationality_id");
         int birthPlaceId = rs.getInt("birthPlace_id");
         String nationalityStr = rs.getString("nationality");
@@ -30,7 +31,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         Country nationality = new Country(nationalityId,nationalityStr,null);
         Country birthPlace = new Country(birthPlaceId,birthPlaceStr,null);
 
-        return new User(id, name, surname, phone, email,birthDate,nationality,birthPlace);
+        return new User(id, name, surname, phone, email,profileDesc ,birthDate,nationality,birthPlace);
     }
     @Override
     public List<User> getAll() {
@@ -80,12 +81,13 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
        @Override
     public boolean updateUser(entity.User u) {
         try (Connection c = connect()) {
-            PreparedStatement stmt = c.prepareStatement("update user set name = ?,surname = ?,phone = ?,email = ? where id = ?");
+            PreparedStatement stmt = c.prepareStatement("update user set name = ?,surname = ?,phone = ?,email = ?,profile_description = ? where id = ?");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getSurname());
             stmt.setString(3, u.getPhone());
             stmt.setString(4, u.getEmail());
-            stmt.setInt(5, u.getId());
+            stmt.setString(5, u.getProfileDesc());
+            stmt.setInt(6, u.getId());
             return stmt.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -97,11 +99,12 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
     @Override
     public boolean addUser(User u) {
         try (Connection c = connect()) {
-            PreparedStatement stmt = c.prepareStatement("insert into user (name,surname,phone,email)values(?,?,?,?)");
+            PreparedStatement stmt = c.prepareStatement("insert into user (name,surname,phone,email,profile_description)values(?,?,?,?,?)");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getSurname());
             stmt.setString(3, u.getPhone());
             stmt.setString(4, u.getEmail());
+            stmt.setString(5, u.getProfileDesc());
             return stmt.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
